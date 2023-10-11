@@ -14,9 +14,9 @@ public class WeekDay {
         HashMap<String, String> days = new HashMap<>();
         days.put("MONDAY", "Понедельник");
         days.put("FRIDAY", "Пятница");
-        for (Object day: days.keySet()) {
-            if (day.equals(dayString)){
-                return String.format("Сегодня %s!", day);
+        for (HashMap.Entry<String, String> day: days.entrySet()) {
+            if (day.getKey().equals(dayString)){
+                return String.format("Сегодня %s!", day.getValue());
             }
         }
         return "";
