@@ -5,14 +5,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.ksutei.planner.util.Day;
 
+import java.util.HashMap;
+
 @RestController
 public class WeekDay {
     @GetMapping("/dayOfWeek")
     public String whatAWeekDay(@RequestParam("name") String dayString) {
-        Day[] days = Day.values();
-        for (Day day: days) {
-            if (day.name().equals(dayString)){
-                return String.format("Сегодня %s!", day.getRusName());
+        HashMap<String, String> days = new HashMap<>();
+        days.put("MONDAY", "Понедельник");
+        days.put("FRIDAY", "Пятница");
+        for (Object day: days.keySet()) {
+            if (day.equals(dayString)){
+                return String.format("Сегодня %s!", day);
             }
         }
         return "";
